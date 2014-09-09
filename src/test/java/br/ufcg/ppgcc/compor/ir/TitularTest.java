@@ -32,7 +32,7 @@ public class TitularTest {
 		Titular titular2 = TitularHelper.criarTitularMinimo();
 		TitularHelper.verificaCriacaoTitulares(fachada, titular1, titular2);
 	}
-
+	
 	@Test
 	public void T_01_04_titularSemNome() {
 		Titular titular = new Titular();
