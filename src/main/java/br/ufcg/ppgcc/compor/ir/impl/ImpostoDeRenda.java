@@ -18,6 +18,7 @@ public class ImpostoDeRenda implements FachadaExperimento {
 	private Map<Titular, List<FontePagadora>> titulares = new LinkedHashMap<Titular, List<FontePagadora>>();
 	private Map<Titular, List<FontePagadora>> fontePagadoras = new HashMap<Titular, List<FontePagadora>>();
 	private Map<Titular, List<FontePagadora>> fontesPagadoras = new HashMap<Titular, List<FontePagadora>>();
+	private Map<Titular, List<Dependente>> dependentes = new HashMap<Titular, List<Dependente>>();
 
 	public void criarNovoTitular(Titular titular) {
 
@@ -42,11 +43,11 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		inicializarLista(titular);
 		if (fontePagadora.getNome() == null) {
 			throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
-			
-		}else if (fontePagadora.getRendimentoRecebidos() == 0.0) {
+
+		} else if (fontePagadora.getRendimentoRecebidos() == 0.0) {
 			throw new ExcecaoImpostoDeRenda(
 					"O campo rendimentos recebidos é obrigatório");
-			
+
 		} else if (fontePagadora.getRendimentoRecebidos() < 0.0) {
 			throw new ExcecaoImpostoDeRenda(
 					"O campo rendimentos recebidos deve ser maior que zero");
@@ -54,61 +55,45 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		if (fontePagadora.getCpfCnpj() == null) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF/CNPJ é obrigatório");
 		}
-		
+
 		if (fontePagadora.getCpfCnpj().matches(
 				"\\d\\d\\d.\\d\\d\\d.\\d\\d\\d-\\d\\d")) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
 		}
 		fontesPagadoras.get(titular).add(fontePagadora);
-		
+
 	}
-	
 	public List<FontePagadora> listarFontes(Titular titular) {
 		inicializarLista(titular);
 		return fontesPagadoras.get(titular);
 	}
 	
-	private void inicializarLista(Titular titular) {
-		if (fontesPagadoras.get(titular) == null) {
-			fontesPagadoras.put(titular, new ArrayList<FontePagadora>());
-		}
-	}
-
 	
-	/*
-	 * } public void criarDependente(Titular titular, Dependente dependente) {
-	 * // TODO Auto-generated method stub
-	 * 
-	 * }
-	 * 
-	 * public List<Dependente> listarDependentes(Titular titular) { // TODO
-	 * Auto-generated method stub return null; }
-	 * 
-	 * public Resultado declaracaoCompleta(Titular titular) { // TODO
-	 * Auto-generated method stub return null; }
-	 */
+	// ////////////////////////////
+	// ////////////////////////////
 
 	public void criarDependente(Titular titular, Dependente dependente) {
-		// TODO Auto-generated method stub
-
+		inicializarLista(titular);
+		dependentes.get(titular).add(dependente);		
 	}
 
 	public List<Dependente> listarDependentes(Titular titular) {
-		// TODO Auto-generated method stub
-		return null;
+		inicializarLista(titular);
+		return dependentes.get(titular);
 	}
+	
+	private void inicializarLista(Titular titular) {
+		if (dependentes.get(titular) == null) {
+			dependentes.put(titular, new ArrayList<Dependente>());
+		}
+	}
+	
 
 	public Resultado declaracaoCompleta(Titular titular) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
 	
-	/*public List<FontePagadora> listarFontes(Titular titular) {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
 
-	
 }

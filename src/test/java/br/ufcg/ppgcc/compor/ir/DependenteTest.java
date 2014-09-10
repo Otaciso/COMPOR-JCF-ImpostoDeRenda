@@ -23,7 +23,7 @@ public class DependenteTest {
 		DependenteHelper.verificaCriacaoDependentes(fachada, titular, dependente);
 	}
 
-	@Test
+/*	@Test
 	public void T_03_02_doisDependentesEmUmTitular() {
 		Titular titular = TitularHelper.criarTitularPadrao();
 		fachada.criarNovoTitular(titular);
@@ -100,5 +100,5 @@ public class DependenteTest {
 		Dependente dependente = DependenteHelper.criarDependentePadrao1();
 		DependenteHelper.excecaoCriarDependente(fachada, titular, dependente,
 				"Titular não cadastrado");
-	}
+	}*/
 }
