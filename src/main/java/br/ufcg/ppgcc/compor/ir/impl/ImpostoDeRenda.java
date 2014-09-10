@@ -38,32 +38,31 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		return new ArrayList<Titular>(titulares.keySet());
 	}// RRRR\\
 
-
-	
 	public void criarFontePagadora(Titular titular, FontePagadora fontePagadora) {
 		inicializarLista(titular);
-		fontesPagadoras.get(titular).add(fontePagadora);
-	/*
-
-		if (fonte.getNome() == null) {
+		if (fontePagadora.getNome() == null) {
 			throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
-		} else if (fontePagadoras.containsKey(fonte)) {
-
-		} else if (fonte.getRendimentoRecebidos() == 0.0) {
+			
+		}else if (fontePagadora.getRendimentoRecebidos() == 0.0) {
 			throw new ExcecaoImpostoDeRenda(
 					"O campo rendimentos recebidos é obrigatório");
-		} else if (fonte.getRendimentoRecebidos() < 0.0) {
+			
+		} else if (fontePagadora.getRendimentoRecebidos() < 0.0) {
 			throw new ExcecaoImpostoDeRenda(
 					"O campo rendimentos recebidos deve ser maior que zero");
-		} else if (fonte.getCpfCnpj() == null) {
+		}
+		if (fontePagadora.getCpfCnpj() == null) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF/CNPJ é obrigatório");
-		} else if (!fonte.getCpfCnpj().matches(
+		}
+		
+		if (fontePagadora.getCpfCnpj().matches(
 				"\\d\\d\\d.\\d\\d\\d.\\d\\d\\d-\\d\\d")) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
-		}*/
-		/*ArrayList<FontePagadora> fontesDoTitular = (ArrayList<FontePagadora>) titulares.get(titular);
-		fontesDoTitular.add(fonte);*/
+		}
+		fontesPagadoras.get(titular).add(fontePagadora);
+		
 	}
+	
 	public List<FontePagadora> listarFontes(Titular titular) {
 		inicializarLista(titular);
 		return fontesPagadoras.get(titular);
