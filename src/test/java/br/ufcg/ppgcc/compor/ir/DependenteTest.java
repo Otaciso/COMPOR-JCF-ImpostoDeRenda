@@ -31,7 +31,7 @@ public class DependenteTest {
 		Dependente dependente2 = DependenteHelper.criarDependentePadrao2();
 		DependenteHelper.verificaCriacaoDependentes(fachada, titular, dependente1, dependente2);
 	}
-/*
+
 	@Test
 	public void T_03_03_doisDependentesUmEmCadaTitular() {
 		Titular titular1 = TitularHelper.criarTitularPadrao();
@@ -45,7 +45,7 @@ public class DependenteTest {
 		DependenteHelper.verificaCriacaoDependentes(fachada, titular1, dependente1);
 		DependenteHelper.verificaCriacaoDependentes(fachada, titular2, dependente2);
 	}
-
+	/*
 	@Test
 	public void T_03_04_validacaoDependente() {
 		Titular titular = TitularHelper.criarTitularPadrao();
