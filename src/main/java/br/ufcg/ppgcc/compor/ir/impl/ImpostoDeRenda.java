@@ -139,7 +139,7 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		double deducaoPorDependente = 1974.72 * dependentes.get(titular).size();
 		somatorioRendimentos -= deducaoPorDependente;
 		
-		
+		    
 		
 		return resultado;
 	}
