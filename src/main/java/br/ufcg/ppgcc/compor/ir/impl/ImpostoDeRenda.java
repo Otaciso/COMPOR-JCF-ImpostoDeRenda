@@ -163,7 +163,7 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		}	   	
 		impostoDevido = (somatorioRendimentos * aliquota) - parcelaDeducao;
 		resultado.setImpostoDevido(impostoDevido);
-
+  
 		return resultado;  
 	}
   
