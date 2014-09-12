@@ -160,7 +160,7 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		}else if (somatorioRendimentos > 49051.80) {
 			aliquota = 27.5 / 100;
 			parcelaDeducao = 9078.38;
-		}		
+		}	  	
 		impostoDevido = (somatorioRendimentos * aliquota) - parcelaDeducao;
 		resultado.setImpostoDevido(impostoDevido);
 
