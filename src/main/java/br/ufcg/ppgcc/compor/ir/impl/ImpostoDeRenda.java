@@ -88,24 +88,28 @@ public class ImpostoDeRenda implements FachadaExperimento {
 	// //////////////////////////////////////////////
 	public void criarDependente(Titular titular, Dependente dependente) {
 
-		if (dependente.getNome() == null) {
-			throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
-		}
-
 		if (dependente.getCpf() == null) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
 		}
-
+		if (dependente.getNome() == null) {
+			throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
+		}
 		if (dependente.getTipo() == 0) {
 			throw new ExcecaoImpostoDeRenda("O campo tipo é obrigatório");
 		}
-
 		if (dependente.getCpf().matches("\\d\\d\\d.\\d\\d\\d.\\d\\d\\d-\\d\\d") == false) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF é inválido");
 		}
-		
+		if (dependente.getTipo() <= 0) {
+			throw new ExcecaoImpostoDeRenda("O campo tipo é inválido");
+		}
 		if (dependentes.containsKey(titular) == false) {
 			throw new ExcecaoImpostoDeRenda("Titular não cadastrado");
+		}
+
+		if (dependentes.containsKey(titular)) {
+			List<Dependente> listDependente = dependentes.get(titular);
+			listDependente.add(dependente);
 		}
 
 	}
