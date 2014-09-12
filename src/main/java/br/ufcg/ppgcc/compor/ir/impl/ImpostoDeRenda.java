@@ -18,6 +18,7 @@ public class ImpostoDeRenda implements FachadaExperimento {
 	private Map<Titular, List<FontePagadora>> titulares = new LinkedHashMap<Titular, List<FontePagadora>>();
 	private Map<Titular, List<FontePagadora>> fontePagadoras = new HashMap<Titular, List<FontePagadora>>();
 	private Map<Titular, List<FontePagadora>> fontesPagadoras = new HashMap<Titular, List<FontePagadora>>();
+	private Map<Titular, List<Dependente>> dependentes = new HashMap<Titular, List<Dependente>>();
 
 	public void criarNovoTitular(Titular titular) {
 
@@ -71,7 +72,6 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		}
 
 		fontesPagadoras.get(titular).add(fonte);
-
 	}
 
 	public List<FontePagadora> listarFontes(Titular titular) {
@@ -85,30 +85,33 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		}
 	}
 
+	// //////////////////////////////////////////////
 	public void criarDependente(Titular titular, Dependente dependente) {
-		// TODO Auto-generated method stub
+
+		if (dependente.getNome() == null) {
+			throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
+		}
+
+		if (dependente.getCpf() == null) {
+			throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
+		}
+
+		if (dependente.getTipo() == 0) {
+			throw new ExcecaoImpostoDeRenda("O campo tipo é obrigatório");
+		}
+
+		if (dependente.getCpf().matches("\\d\\d\\d.\\d\\d\\d.\\d\\d\\d-\\d\\d") == false) {
+			throw new ExcecaoImpostoDeRenda("O campo CPF é inválido");
+		}
 
 	}
 
 	public List<Dependente> listarDependentes(Titular titular) {
-		// TODO Auto-generated method stub
-		return null;
+		return dependentes.get(titular);
 	}
 
 	public Resultado declaracaoCompleta(Titular titular) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	/*
-	 * public void criarDependente(Titular titular, Dependente dependente) {
-	 * inicializarLista(titular); dependente.get(titular).add(dependente); } }
-	 * 
-	 * public List<Dependente> listarDependentes(Titular titular) { // TODO
-	 * Auto-generated method stub return null; }
-	 * 
-	 * public Resultado declaracaoCompleta(Titular titular) { // TODO
-	 * Auto-generated method stub return null; }
-	 */
 
 }

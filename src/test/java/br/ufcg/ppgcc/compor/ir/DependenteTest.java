@@ -45,7 +45,7 @@ public class DependenteTest {
 		DependenteHelper.verificaCriacaoDependentes(fachada, titular1, dependente1);
 		DependenteHelper.verificaCriacaoDependentes(fachada, titular2, dependente2);
 	}
-	
+
 	@Test
 	public void T_03_04_validacaoDependente() {
 		Titular titular = TitularHelper.criarTitularPadrao();
@@ -72,7 +72,7 @@ public class DependenteTest {
 		DependenteHelper.excecaoCriarDependente(fachada, titular,
 				dependenteComTipoInvalido, "O campo tipo é inválido");
 	}
-	/*
+	
 	@Test
 	public void T_03_05_novoDependenteComCpfInvalido() {
 		Titular titular = TitularHelper.criarTitularPadrao();
@@ -100,5 +100,5 @@ public class DependenteTest {
 		Dependente dependente = DependenteHelper.criarDependentePadrao1();
 		DependenteHelper.excecaoCriarDependente(fachada, titular, dependente,
 				"Titular não cadastrado");
-	}*/
+	}
 }
