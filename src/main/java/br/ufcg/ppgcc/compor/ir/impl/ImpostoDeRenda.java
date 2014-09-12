@@ -53,14 +53,14 @@ public class ImpostoDeRenda implements FachadaExperimento {
 			throw new ExcecaoImpostoDeRenda(
 					"O campo rendimentos recebidos deve ser maior que zero");
 		}
-		
+
 		if (fonte.getCpfCnpj() == null) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF/CNPJ é obrigatório");
-		} else if (!fonte.getCpfCnpj().matches("\\d\\d.\\d\\d\\d.\\d\\d\\d" + "/"
-				+ "\\d\\d\\d\\d-\\d\\d")) {
+		} else if (!fonte.getCpfCnpj().matches(
+				"\\d\\d.\\d\\d\\d.\\d\\d\\d" + "/" + "\\d\\d\\d\\d-\\d\\d")) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF/CNPJ é inválido");
 		}
-		
+
 		if (titulares.containsKey(titular) == false) {
 			throw new ExcecaoImpostoDeRenda("Titular não cadastrado");
 		}
@@ -127,10 +127,11 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		return dependentes.get(titular);
 	}
 
-	
-	
-	////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////
 	public Resultado declaracaoCompleta(Titular titular) {
+		double aliquota = 0;
+		double parcelaDeducao = 0;
+		double impostoDevido = 0;
 		Resultado resultado = new Resultado();
 		double somatorioRendimentos = 0;
 		for (FontePagadora fp : listarFontes(titular)) {
@@ -138,18 +139,19 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		}
 		double deducaoPorDependente = 1974.72 * dependentes.get(titular).size();
 		somatorioRendimentos -= deducaoPorDependente;
-		
-		    
-		
+
+		if (somatorioRendimentos < 19645.33) {
+			aliquota = 0;
+			parcelaDeducao = 0;
+		} else if (somatorioRendimentos >= 19645.33
+				&& somatorioRendimentos <= 29442.0) {
+			aliquota = 7.5 / 100;
+			parcelaDeducao = 1473.4;
+		}
+		impostoDevido = (somatorioRendimentos * aliquota) - parcelaDeducao;
+		resultado.setImpostoDevido(impostoDevido);
+
 		return resultado;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
