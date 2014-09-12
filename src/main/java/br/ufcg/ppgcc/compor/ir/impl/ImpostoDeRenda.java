@@ -103,6 +103,10 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		if (dependente.getCpf().matches("\\d\\d\\d.\\d\\d\\d.\\d\\d\\d-\\d\\d") == false) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF é inválido");
 		}
+		
+		if (dependentes.containsKey(titular) == false) {
+			throw new ExcecaoImpostoDeRenda("Titular não cadastrado");
+		}
 
 	}
 
